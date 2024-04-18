@@ -2,7 +2,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="../img/logo.png" type="image/png">
 
-<link rel="stylesheet" href="../css/main.css">
+
 <!--select2-->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../css/css/all.min.css">
@@ -70,9 +70,18 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-header">Usuarios</li>
+          <li class="nav-item">
+            <a href="../vista/datos_personales.php" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Perfil
+              </p>
+            </a>
+          </li>
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
-            <a href="editar_datos_personales.php" class="nav-link">
+            <a href="../vista/datos_personales.php" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery
