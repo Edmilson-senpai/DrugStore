@@ -1,9 +1,5 @@
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.4
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -12,11 +8,16 @@
 <script src="../js/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../js/demo.js"></script>
+<script src="../js/charts.js"></script>
 <!-- SweetAlert2 -->
+<script src="../js/select2.js"></script>
+<!-- fontawesom-->
+<script src="https://kit.fontawesome.com/ca04ff3741.js" crossorigin="anonymous"></script>
 
 </body>
 

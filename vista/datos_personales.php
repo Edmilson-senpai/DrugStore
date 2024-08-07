@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==1){
+if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
     include_once 'layouts/header.php';
 ?>
 
@@ -8,6 +8,100 @@ if($_SESSION['us_tipo']==1){
 <?php
     include_once 'layouts/nav.php';
 ?>
+
+<!-- Modal -->
+<div class="modal fade" id="cambiocontra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span arian-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+            <img src="../img/default.jpg" class="profile-user-img img-fluid img-circle">
+        </div>
+        <div class="text-center">
+            <b>
+                <?php
+                echo $_SESSION['nombre_us'];
+                ?>
+            </b>
+        </div>
+        
+        <div class="alert alert-success text-center m-1" id="update" style="display:none;">
+            <span><i class="fas fa-check">Editado</i></span>
+        </div>
+        <div class="alert alert-danger text-center m-1" id="noupdate" style="display:none;">
+            <span><i class="fas fa-times">Contraseña Incorrecta</i></span>
+        </div>
+        <form id="form-pass">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                </div>
+                <input id="oldpass" type="password" class="form-control" placeholder="Ingrese contraseña actual">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+                <input id="newpass" type="text" class="form-control" placeholder="Ingrese contraseña nueva">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="sumbit" class="btn bg-gradient-primary">Guardar</button>
+            </form>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cambiophoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLabel">Cambiar Avatar</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span arian-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <img id="avatar1" src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
+            </div>
+            <div class="text-center">
+                <b>
+                    <?php
+                    echo $_SESSION['nombre_us'];
+                    ?>
+                </b>
+            </div>
+            <div class="alert alert-success text-center m-1" id="edit" style="display:none;">
+                <span><i class="fas fa-check">Se cambio el avatar</i></span>
+            </div>
+            <div class="alert alert-danger text-center m-1" id="noedit" style="display:none;">
+                <span><i class="fas fa-times">Error</i></span>
+            </div>
+            <form id="form-photo" enctype="multipart/form-data">
+                <div class="input-group mb-3 ml-5 mt-2">
+                    <input type="file" name="photo" class="input-group">
+                    <input type="hidden" name="funcion" value="cambiar_foto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="sumbit" class="btn bg-gradient-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,6 +132,9 @@ if($_SESSION['us_tipo']==1){
                                 <div class="text-center">
                                     <img src="../img/avatar.png" alt="avatar" class="profile-user-img img-fluid img-circle">
                                 </div>
+                                <div class="text-center mt-1">
+                                    <button type='button' data-toggle="modal" data-target="#cambiophoto" class="btn btn-primary btn-sm">Cambiar Avatar</button>
+                                </div>
                                 <input id="id_usuario" type="hidden" value="<?php echo $_SESSION['usuario']?>">
                                 <h3 id="nombre_us" class="profile-username text-center text-info" style="color: blue;">Nombre</h3>
                                     <p id="apellidos_us" class="text-muted text-center">Apellidos</p>
@@ -52,6 +149,7 @@ if($_SESSION['us_tipo']==1){
                                             <b style="color: cadetblue;">Rol</b>
                                             <span id="us_tipo" class="float-right badge badge-primary">Administrador</span>
                                         </li>
+                                        <button data-toggle="modal" data-target="#cambiocontra" type="button" class="btn btn-block btn-outline-warning btn-sm">Cambiar contraseña</button>
                                     </ul>
                             </div>
                         </div>
@@ -103,7 +201,7 @@ if($_SESSION['us_tipo']==1){
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
                                         <div class="col-sm-10">
-                                            <input type="number" id="telefono" class="form-control">
+                                            <input type="number" id="telefono" class="form-control" min="0" max="999999999">
                                         </div>                                   
                                     </div>
                                     <div class="form-group row">

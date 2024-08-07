@@ -1,6 +1,9 @@
+//MENSAJE TEST
 $(document).ready(function(){
     var funcion=''
+    //tomar id usuario
     var id_usuario = $('#id_usuario').val();
+    //variable verificadora de estado editable (flag)
     var edit = false;
     buscar_usuario(id_usuario)
     function buscar_usuario(dato){
@@ -25,8 +28,8 @@ $(document).ready(function(){
             tipo+=`${usuario.tipo}`;
             telefono+=`${usuario.telefono}`;
             direccion+=`${usuario.direccion}`;
-            correo+=`${usuario.sexo}`;
-            sexo+=`${usuario.apellidos}`;
+            correo+=`${usuario.correo}`;
+            sexo+=`${usuario.sexo}`;
             extra+=`${usuario.extra}`;
             $('#nombre_us').html(nombre);
             $('#apellidos_us').html(apellidos);
@@ -82,5 +85,25 @@ $(document).ready(function(){
         }
         e.preventDefault();
     })
-
+    
+    // Evento actualizar contrasena
+    $('#form-pass').submit(e=>{
+        let oldpass=$('#oldpass').val();
+        let newpass=$('#newpass').val();
+        funcion='cambiar_contra';
+        $.post('../controlador/UsuarioController.php',{id_usuario,funcion,oldpass,newpass},(response)=>{
+            if(response=='update'){
+                $('#update').hide('slow');
+                    $('#update').show(1000);
+                    $('#update').hide(2000);
+                    $('#form-pass').trigger('reset');
+            }else{
+                $('#noupdate').hide('slow');
+                    $('#noupdate').show(1000);
+                    $('#noupdate').hide(2000);
+                    $('#form-pass').trigger('reset');
+            }
+        })
+        e.preventDefault();
+    })
 })
